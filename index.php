@@ -8,8 +8,8 @@ Liscense: MIT
 
 /* Uncomment section below, if you want a trivial password protection */
 
-/*
-$PASSWORD = 'sfm'; 
+
+$PASSWORD = 'prova'; 
 session_start();
 if(!$_SESSION['_sfm_allowed']) {
 	// sha1, and random bytes to thwart timing attacks.  Not meant as secure hashing.
@@ -21,7 +21,7 @@ if(!$_SESSION['_sfm_allowed']) {
 	echo '<html><body><form action=? method=post>PASSWORD:<input type=password name=p /></form></body></html>'; 
 	exit;
 }
-*/
+
 
 // must be in UTF-8 or `basename` doesn't work
 setlocale(LC_ALL,'en_US.UTF-8');
@@ -342,11 +342,11 @@ $(function(){
 			.text(data.name);
 		var $dl_link = $('<a/>').attr('href','?do=download&file='+encodeURIComponent(data.path))
 			.addClass('download').text('download');
-		var $delete_link = $('<a href="#" />').attr('data-file',data.path).addClass('delete').text('delete');
+		var $delete_link = $('<a href="#" />').attr('data-file',data.path).addClass('delete').text('rimuovi');
 		var perms = [];
-		if(data.is_readable) perms.push('read');
-		if(data.is_writable) perms.push('write');
-		if(data.is_executable) perms.push('exec');
+		if(data.is_readable) perms.push('lettura');
+		if(data.is_writable) perms.push('scrittura');
+		if(data.is_executable) perms.push('esegui');
 		var $html = $('<tr />')
 			.addClass(data.is_dir ? 'is_dir' : '')
 			.append( $('<td class="first" />').append($link) )
@@ -370,11 +370,11 @@ $(function(){
 		return $html;
 	}
 	function formatTimestamp(unix_timestamp) {
-		var m = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		var m = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
 		var d = new Date(unix_timestamp*1000);
-		return [m[d.getMonth()],' ',d.getDate(),', ',d.getFullYear()," ",
-			(d.getHours() % 12 || 12),":",(d.getMinutes() < 10 ? '0' : '')+d.getMinutes(),
-			" ",d.getHours() >= 12 ? 'PM' : 'AM'].join('');
+		return [d.getDate(),' ',m[d.getMonth()],' ',d.getFullYear()," ",
+			(d.getHours()),":",(d.getMinutes() < 10 ? '0' : '')+d.getMinutes(),
+			" ",d.getHours() >= 12 ? '' : ''].join('');
 	}
 	function formatFileSize(bytes) {
 		var s = ['bytes', 'KB','MB','GB','TB','PB','EB'];
@@ -387,13 +387,13 @@ $(function(){
 </script>
 </head><body>
 <div id="top">
-	<form action="?" method="post" id="mkdir" />
+	<!--form action="?" method="post" id="mkdir" />
 		<label for=dirname>Create New Folder</label><input id=dirname type=text name=name value="" />
 		<input type="submit" value="create" />
-	</form>
+	</form-->
 	<div id="file_drop_target">
-		Drag Files Here To Upload
-		<b>or</b>
+		Trascina i file qui per caricarli 
+		<b>o</b>
 		<input type="file" multiple />
 	</div>
 	<div id="breadcrumb">&nbsp;</div>
@@ -401,13 +401,14 @@ $(function(){
 
 <div id="upload_progress"></div>
 <table id="table"><thead><tr>
-	<th>Name</th>
-	<th>Size</th>
-	<th>Modified</th>
-	<th>Permissions</th>
-	<th>Actions</th>
+	<th>Nome</th>
+	<th>Dimensione</th>
+	<th>Ultima mod.</th>
+	<th>Permessi</th>
+	<th>Azioni</th>
 </tr></thead><tbody id="list">
 
 </tbody></table>
-<footer>simple php filemanager by <a href="https://github.com/jcampbell1">jcampbell1</a></footer>
+
+<footer>simple php filemanager by <a href="https://github.com/jcampbell1">jcampbell1</a><br>Localizzazione italiana by Luca Skrzydlewski</footer>
 </body></html>

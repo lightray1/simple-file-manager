@@ -2,6 +2,7 @@
 /********************************
 Simple PHP File Manager
 Copyright John Campbell (jcampbell1)
+Localizzazione italiana by lightray
 
 Liscense: MIT
 ********************************/
@@ -410,5 +411,5 @@ $(function(){
 
 </tbody></table>
 
-<footer>simple php filemanager by <a href="https://github.com/jcampbell1">jcampbell1</a><br>Localizzazione italiana by Luca Skrzydlewski</footer>
+<footer>simple php filemanager by <a href="https://github.com/jcampbell1">jcampbell1</a><br>Localizzazione italiana by lightray</footer>
 </body></html>
